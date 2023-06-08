@@ -1,6 +1,6 @@
 // Get the containers and the reset button
-const container1 = document.getElementById('container1');
-const container2 = document.getElementById('container2');
+const container1 = document.querySelector('.container1');
+const container2 = document.querySelector('.container2');
 const resetButton = document.getElementById('resetButton');
 
 // Add event listeners for drag events on the items
@@ -10,59 +10,67 @@ for (const item of items) {
   item.addEventListener('dragend', dragEnd);
 }
 
-// Add event listeners for drop events on the second container
+// Drag and drop event handlers
+let draggedItem = null;
+
+function dragStart(event) {
+  draggedItem = this;
+  event.dataTransfer.setData('text/plain', '');
+  event.dataTransfer.effectAllowed = 'move';
+  this.classList.add('dragging');
+}
+
+function dragEnd(event) {
+  draggedItem = null;
+  this.classList.remove('dragging');
+}
+
 container2.addEventListener('dragover', dragOver);
+container2.addEventListener('dragenter', dragEnter);
+container2.addEventListener('dragleave', dragLeave);
 container2.addEventListener('drop', drop);
 
-// Add event listener for the reset button
-resetButton.addEventListener('click', reset);
-
-// Drag start event handler
-function dragStart(event) {
-  // Add 'dragging' class to the item being dragged
-  event.target.classList.add('dragging');
-}
-
-// Drag end event handler
-function dragEnd(event) {
-  // Remove 'dragging' class from the item
-  event.target.classList.remove('dragging');
-}
-
-// Drag over event handler (required to allow dropping)
 function dragOver(event) {
   event.preventDefault();
 }
 
-// Drop event handler
+function dragEnter(event) {
+  event.preventDefault();
+  this.classList.add('drag-over');
+}
+
+function dragLeave() {
+  this.classList.remove('drag-over');
+}
+
 function drop(event) {
   event.preventDefault();
+  const droppedItem = draggedItem;
+  this.appendChild(droppedItem);
+  this.classList.remove('drag-over');
+  displaySuccessMessage();
+}
 
-  // Get the dragged item
-  const draggedItem = document.querySelector('.item.dragging');
+// Reset button event handler
+resetButton.addEventListener('click', reset);
 
-  // Clone the dragged item and append it to the second container
-  const clonedItem = draggedItem.cloneNode(true);
-  container2.appendChild(clonedItem);
+function reset() {
+  while (container2.firstChild) {
+    container1.appendChild(container2.firstChild);
+  }
+  hideSuccessMessage();
+}
 
-  // Remove the original item from the first container
-  draggedItem.parentNode.removeChild(draggedItem);
-
-  // Display a success message
+// Success message functions
+function displaySuccessMessage() {
   const successMessage = document.createElement('p');
-  successMessage.classList.add('success-message');
-  successMessage.innerText = 'Item dropped successfully!';
+  successMessage.textContent = 'Item dropped successfully!';
   container2.appendChild(successMessage);
 }
 
-// Reset the containers to their original state
-function reset() {
-  // Clear the second container
-  container2.innerHTML = '';
-
-  // Append the original items back to the first container
-  const originalItems = container1.getElementsByClassName('item');
-  for (const item of originalItems) {
-    container1.appendChild(item);
+function hideSuccessMessage() {
+  const successMessage = container2.querySelector('p');
+  if (successMessage) {
+    successMessage.remove();
   }
 }

@@ -1,32 +1,65 @@
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header p {
+  margin: 0;
+}
 
 .container {
-    display: flex;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-    width: 200px;
-    height: 300px;
-    border: 1px solid #cccccc;
-    display: inline-block;
-    vertical-align: top;
-    margin-right: 20px;
-  }
-  
-  .item {
-    background-color: #f2f2f2;
-    padding: 10px;
-    margin-bottom: 5px;
-    cursor: grab;
-    cursor: -moz-grab;
-  cursor: -webkit-grab;
-  }
-  
-  
-  .item.dragging {
-    opacity: 0.5;
-  }
-  
-  .success-message {
-    color: green;
-    font-weight: bold;
-  }
-  
+}
+
+.container-inner {
+  display: flex;
+  flex: 1;
+}
+
+.container1 {
+  padding-right: 10px;
+  border: 2px dashed #ccc;
+  flex: 1;
+}
+
+.container2 {
+  padding-left: 10px;
+  border: 2px dashed #ccc;
+  min-height: 120px;
+  flex: 1;
+}
+
+.item {
+  background-color: #f2f2f2;
+  padding: 10px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.item img {
+  display: block;
+  margin: 0 auto;
+}
+.responsive-image {
+  width: 100%;
+  height: auto;
+}
+
+.item.dragging {
+  opacity: 0.5;
+}
+
+.reset-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
