@@ -1,11 +1,13 @@
 # Drag and Drop Project
 
 This is a simple web application that demonstrates drag and drop functionality using HTML, CSS, and JavaScript.
-[Link](https://cosmic-banoffee-9a661e.netlify.app/)
+
+## [Link](https://cosmic-banoffee-9a661e.netlify.app/)
 
 ## Table of Contents
 
 - [Description](#description)
+- [Screenshots](#screenshots)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
@@ -14,6 +16,13 @@ This is a simple web application that demonstrates drag and drop functionality u
 ## Description
 
 The Drag and Drop Project allows users to drag images from a container and drop them into another container. It showcases the implementation of drag and drop events using native HTML5 APIs. The project uses plain HTML, CSS, and JavaScript without any third-party libraries or frameworks.
+
+## Screenshots
+![Screenshot 1](ss1.jpg)
+![Screenshot 2](ss2.jpg)
+![Screenshot 3](ss3.jpg)
+
+
 
 ## Installation
 
