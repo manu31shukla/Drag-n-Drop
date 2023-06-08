@@ -52,8 +52,6 @@ function drop(event) {
 }
 
 // Reset button event handler
-resetButton.addEventListener('click', reset);
-
 function reset() {
   while (container2.firstChild) {
     container1.appendChild(container2.firstChild);
@@ -61,16 +59,19 @@ function reset() {
   hideSuccessMessage();
 }
 
-// Success message functions
-function displaySuccessMessage() {
-  const successMessage = document.createElement('p');
-  successMessage.textContent = 'Item dropped successfully!';
-  container2.appendChild(successMessage);
-}
-
 function hideSuccessMessage() {
-  const successMessage = container2.querySelector('p');
+  const successMessage = document.querySelector('.success-message');
   if (successMessage) {
     successMessage.remove();
   }
 }
+
+
+// Success message functions
+function displaySuccessMessage() {
+  const successMessage = document.createElement('p');
+  successMessage.textContent = 'Item dropped successfully!';
+  successMessage.classList.add('success-message'); // Add the class
+  container2.appendChild(successMessage);
+}
+
